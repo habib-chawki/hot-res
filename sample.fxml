@@ -1,0 +1,76 @@
+<?import javafx.scene.layout.GridPane?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Spinner?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+
+<GridPane fx:controller="sample.Controller"
+          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+
+    <Label text="Name: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    <TextField fx:id="mainResident" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Label text="Room type: " GridPane.rowIndex="1" GridPane.columnIndex="0" />
+    <ComboBox fx:id="roomType" GridPane.rowIndex="1" GridPane.columnIndex="1">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Single" />
+                <String fx:value="Double" />
+                <String fx:value="Triple" />
+                <String fx:value="Quad" />
+                <String fx:value="Suite" />
+            </FXCollections>
+        </items>
+        <value>
+            <String fx:value="Single" />
+        </value>
+    </ComboBox>
+
+    <Label text="Adults: " GridPane.rowIndex="2" GridPane.columnIndex="0" />
+    <Spinner fx:id="numOfAdults" GridPane.rowIndex="2" GridPane.columnIndex="1" min="1" max="5" initialValue="1" editable="true" />
+
+    <Label text="Children: " GridPane.rowIndex="3" GridPane.columnIndex="0" />
+    <Spinner fx:id="numOfChildren" GridPane.rowIndex="3" GridPane.columnIndex="1" min="0" max="3" initialValue="0" editable="true" />
+
+    <Label text="Check-in: " GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+    <DatePicker fx:id="bookingDate" GridPane.rowIndex="4" GridPane.columnIndex="1" />
+
+    <Label text="Time: " GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+    <fx:define>
+        <ToggleGroup fx:id="group"/>
+    </fx:define>
+
+    <HBox GridPane.columnIndex="1" GridPane.rowIndex="5" spacing="10">
+        <RadioButton text="Night" toggleGroup="$group"/>
+        <RadioButton text="Day" toggleGroup="$group" selected="true"/>
+    </HBox>
+
+    <Label text="Meals: " GridPane.rowIndex="6" GridPane.columnIndex="0" />
+    <VBox GridPane.rowIndex="6" GridPane.columnIndex="1" spacing="10">
+        <CheckBox fx:id="breakfastOrdered" text="Breakfast" />
+        <CheckBox fx:id="lunchOrdered" text="Lunch" />
+        <CheckBox fx:id="dinnerOrdered" text="Dinner" />
+    </VBox>
+
+    <Label text="Days: " GridPane.columnIndex="0" GridPane.rowIndex="7" />
+    <Slider fx:id="numOfNights" GridPane.rowIndex="7" GridPane.columnIndex="1" min="1" max="7" showTickLabels="true" showTickMarks="true" majorTickUnit="1" minorTickCount="0" snapToTicks="true"/>
+
+    <Label text="Special requests: " GridPane.columnIndex="0" GridPane.rowIndex="8" />
+    <TextArea fx:id="specialRequest" GridPane.rowIndex="8" GridPane.columnIndex="1" promptText="Special requests are not guaranteed ... " prefHeight="100" prefWidth="300"/>
+    <Button onAction="#makeReservation" GridPane.halignment="CENTER" text="Make reservation" GridPane.rowIndex="9" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+</GridPane>
